@@ -1,0 +1,57 @@
+def rtn_tickle(mgr, room, user, msg, args):
+    room.rawMessage(fontstyle + '*Blushes toward ' + user.name.capitalize() + ' and giggles like a schoolgirl* .//.')
+ 
+def rtn_brb(mgr, room, user, msg, args):
+    try:
+        file = open('track/' + user.name + '.txt', 'r')
+        state = file.read()
+        file.close()
+        if state != 'away':
+            try:
+                name = default.nickget(user.name)
+                room.rawMessage(fontstyle + 'Take your time ' + name + '! :3')
+            except:
+                room.rawMessage(fontstyle + 'Take your time ' + user.name.capitalize() + '! :3')
+            file = open('track/' + user.name + '.txt', 'w')
+            file.writelines('away')
+            file.close()
+    except:
+        file = open('track/' + user.name + '.txt', 'w')
+        file.writelines('here')
+        file.close()  
+def rtn_wb(mgr, room, user, msg, args):
+    try:
+        file = open('track/' + user.name + '.txt', 'r')
+        state = file.read()
+        file.close()
+        if state == 'away':
+            file = open('track/' + user.name + '.txt', 'w')
+            file.writelines('here')
+            file.close()
+            try:
+                name = default.nickget(user.name)
+                room.rawMessage(fontstyle + 'Welcome back ' + name + '! :3')
+            except:
+                room.rawMessage(fontstyle + 'Welcome back ' + user.name.capitalize() + '! :3')
+    except:
+        file = open('track/' + user.name + '.txt', 'w')
+        file.writelines('here')
+        file.close()
+def rtn_kick(mgr, room, user, msg, args):
+    room.rawMessage(fontstyle + '*Squeaks and hits the wall with a splat* x.x')
+def rtn_smex(mgr, room, user, msg, args):
+    key, crap = args.split('|', 1)
+    actions = ['*Dodges the buttsecks and hides behind the scrollbar screaming* NO D:<', '*Moans and humps ' + user.name.capitalize() + ' back hard* *h*', '*Screams bloody murder and hides behind the scrollbar* Please don\'t take me! I\'m too young to die! ;-;', '*Moans and humps ' + user.name.capitalize() + ' lovingly, depositing his "genes" inside them and hopes they get preggers* 8D']
+    if 'rape' in key or 'raep' in key:
+        room.rawMessage(fontstyle + actions[0])
+    elif '*' in key:
+        room.rawMessage(fontstyle + '*Tries to guess what you said*... ' + random.choice(actions))
+    elif 'reap' in key:
+        print(actions[0], actions[1], actions[2])
+        room.rawMessage(fontstyle + actions[2])
+    elif 'babie' in key or 'baby' in key:
+        room.rawMessage(fontstyle + actions[3])
+    else:
+        room.rawMessage(fontstyle + actions[1])
+def rtn_void(mgr, room, user, msg, args):
+    room.rawMessage(fontstyle + '*Hisses and god-mod voids, then incinerates ' + user.name.capitalize() + ' with my eyes* your arguement is invalid! D:<')
